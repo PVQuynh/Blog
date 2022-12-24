@@ -6,12 +6,13 @@ const morgan = require('morgan');
 // Chứa mã HTML
 const handlebars = require('express-handlebars');
 
-const app = express();
-const port = 3000;
-
 // Lấy ra route
 const route = require('./routers');
+const db = require('./config/db')
+db.connect();
 
+const app = express();
+const port = 3000;
 // Sử dụng middleware để lấy giá trị body-query parameters
 app.use(
     express.urlencoded({
