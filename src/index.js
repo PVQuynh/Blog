@@ -1,10 +1,12 @@
 const express = require('express');
+const methodOVerride=  require('method-override')
 // Lấy path
 const path = require('path');
 // Quan sát sự thay đổi của trang web
 const morgan = require('morgan');
 // Chứa mã HTML
 const handlebars = require('express-handlebars');
+
 
 // Lấy ra route
 const route = require('./routers');
@@ -21,6 +23,8 @@ app.use(
 );
 app.use(express.json());
 
+app.use(methodOVerride('_method'))
+
 // Static file
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -32,6 +36,9 @@ app.engine(
     'hbs',
     handlebars.engine({
         extname: 'hbs',
+        helpers: {
+            sum: (a,b) => a + b,
+        }
     }),
 );
 app.set('view engine', 'hbs');
