@@ -11,7 +11,7 @@ const Course = new Schema({
     image: {type: String },
     videoId: {type: String, maxLength: 255, require: true },
     level: {type: String, maxLength: 255 },
-    slug: { type: String, slug: 'name' },
+    slug: { type: String, slug: 'name' , unique: true},
     // createdAt: {type: Date, default: Date.now },
     // updatedAt: {type: Date, default: Date.now },
 }, {
